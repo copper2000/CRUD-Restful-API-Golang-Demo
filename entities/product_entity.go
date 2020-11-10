@@ -44,7 +44,7 @@ func (productModel ProductModel) FindAll() (product []models.Product, err error)
 }
 
 func (productModel ProductModel) FindAllWithPaging(pageIndex int, pageSize int) (product []models.Product, err error) { // ()th pass to f() | ()nd receive by f()
-	rows, err := productModel.Db.Query("SELECT * FROM product LIMIT ? OFFSET ?", pageSize, pageIndex-1)
+	rows, err := productModel.Db.Query("SELECT * FROM product LIMIT ? OFFSET ?", pageSize, (pageIndex - 1) * pageSize)
 
 	if err != nil {
 		return nil, err
